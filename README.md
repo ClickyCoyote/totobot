@@ -1,4 +1,4 @@
-# discord-bot
+# totobot
 
 ## Setup
 
