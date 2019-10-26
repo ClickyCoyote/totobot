@@ -4,7 +4,8 @@ const commando = require('discord.js-commando')
 const path = require('path')
 const oneLine = require('common-tags').oneLine
 const client = new commando.Client({
-  commandPrefix: process.env.COMMAND_CHAR
+  commandPrefix: process.env.COMMAND_CHAR,
+  unknownCommandResponse: false
 })
 
 client
