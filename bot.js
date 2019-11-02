@@ -17,13 +17,13 @@ client
       debug('%s @%s #%s %s', msg.guild.name, msg.member.displayName, msg.channel.name, msg.content)
     }
   })
-  .on('messageDelete', (msg) => {
-    db.addDeletedMessage(msg).then(() => {
-      debug('Stored deleted message: %s @%s #%s %s', msg.guild.name, msg.member.displayName, msg.channel.name, msg.content)
-    }).catch((err) => {
-      debug(err)
-    })
-  })
+  // .on('messageDelete', (msg) => {
+  //   db.addDeletedMessage(msg).then(() => {
+  //     debug('Stored deleted message: %s @%s #%s %s', msg.guild.name, msg.member.displayName, msg.channel.name, msg.content)
+  //   }).catch((err) => {
+  //     debug(err)
+  //   })
+  // })
   .on('ready', () => {
     debug('Client ready; logged in as %s#%s (%s)', client.user.username, client.user.discriminator, client.user.id)
   })
