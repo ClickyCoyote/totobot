@@ -12,9 +12,15 @@ client
   .on('error', debug)
   .on('warn', debug)
   .on('debug', debug)
-  .on('message', (msg) => {
+  .on('message', msg => {
     if (msg.content.startsWith(client.commandPrefix)) {
-      debug('%s @%s #%s %s', msg.guild.name, msg.member.displayName, msg.channel.name, msg.content)
+      debug(
+        '%s @%s #%s %s',
+        msg.guild.name,
+        msg.member.displayName,
+        msg.channel.name,
+        msg.content
+      )
     }
   })
   // .on('messageDelete', (msg) => {
@@ -25,10 +31,19 @@ client
   //   })
   // })
   .on('ready', () => {
-    debug('Client ready; logged in as %s#%s (%s)', client.user.username, client.user.discriminator, client.user.id)
+    debug(
+      'Client ready; logged in as %s#%s (%s)',
+      client.user.username,
+      client.user.discriminator,
+      client.user.id
+    )
   })
-  .on('disconnect', () => { debug('Disconnected!') })
-  .on('reconnecting', () => { debug('Reconnecting...') })
+  .on('disconnect', () => {
+    debug('Disconnected!')
+  })
+  .on('reconnecting', () => {
+    debug('Reconnecting...')
+  })
   .on('commandError', (cmd, err) => {
     if (err instanceof commando.FriendlyError) return
     debug('Error in command %s:%s %s', cmd.groupID, cmd.memberName, err)
@@ -37,7 +52,8 @@ client
 client.registry
   .registerGroups([
     ['pokedex', 'Pokédex'],
-    ['totodile', 'Totodile']
+    ['totodile', 'Totodile'],
+    ['misc', 'Miscellaneous']
   ])
   .registerDefaults()
   // .registerTypesIn(path.join(__dirname, 'types'))
