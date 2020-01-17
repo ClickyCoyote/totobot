@@ -18,8 +18,8 @@ module.exports = class Time extends commando.Command {
   }
 
   async run(msg, args) {
-    const weekday = moment.day()
-    const hour = moment.hour()
+    const weekday = moment().day()
+    const hour = moment().hour()
 
     // Weekend
     if (weekday === 0 || weekday === 6) {
