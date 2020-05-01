@@ -22,6 +22,11 @@ client
         msg.content
       )
     }
+
+    ;['broken', 'not working'].forEach(word => {
+      if (msg.content.includes(word))
+        msg.channel.send('Have you tried turning it off and back on again?')
+    })
   })
   // .on('messageDelete', (msg) => {
   //   db.addDeletedMessage(msg).then(() => {
