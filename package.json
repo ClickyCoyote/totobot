@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "DEBUG=bot* COMMAND_CHAR=. nodemon --use_strict bot.js",
+    "start": "DEBUG=bot* nodemon --use_strict bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

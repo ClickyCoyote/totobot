@@ -8,7 +8,7 @@ const commando = require('discord.js-commando')
 const oneLine = require('common-tags').oneLine
 
 module.exports = class Pokedex extends commando.Command {
-  constructor (client) {
+  constructor(client) {
     super(client, {
       name: 'pokedex',
       aliases: ['pokédex'],
@@ -32,12 +32,15 @@ module.exports = class Pokedex extends commando.Command {
     this.pokedexBaseUri = 'https://pokeapi.co/api/v2/'
   }
 
-  async run (msg, args) {
+  async run(msg, args) {
     try {
       const info = await this.info(args.pokemon)
-      const spriteUrl = await this.sprite(args.pokemon)
-      const sprite = new Discord.Attachment(spriteUrl)
-      return msg.channel.send(info, sprite)
+      return info.sprite
+        ? msg.channel.send(
+            this.formatInfo(info),
+            new Discord.Attachment(info.sprite)
+          )
+        : msg.channel.send(this.formatInfo(info))
     } catch (err) {
       return msg.channel.send(err.message)
     }
@@ -49,39 +52,37 @@ module.exports = class Pokedex extends commando.Command {
    * @param info Object
    * @returns {string}
    */
-  formatInfo (info) {
-    return '#' + info.id + ': ' + utils.toCapitalized(info.name) + '\n' +
-      'Type: ' + utils.toCapitalized(info.type)
+  formatInfo(info) {
+    return (
+      '#' +
+      info.id +
+      ': ' +
+      utils.toCapitalized(info.name) +
+      '\n' +
+      'Type: ' +
+      utils.toCapitalized(info.type)
+    )
   }
 
-  async info (pokemon) {
+  async info(pokemon) {
     try {
-      const response = await axios.get(this.pokedexBaseUri + 'pokemon/' + querystring.escape((pokemon.trim().toLowerCase())))
-      let data = response.data
-      let info = {}
-      info.id = data.id
-      info.name = data.species.name
-      info.type = ''
-      data.types.forEach((type, index) => {
-        info.type = info.type + type.type.name + ' '
-      })
+      const response = await axios.get(
+        this.pokedexBaseUri +
+          'pokemon/' +
+          querystring.escape(pokemon.trim().toLowerCase())
+      )
+      const data = response.data
+      const info = {
+        id: data.id,
+        name: data.species.name,
+        type: data.types.reduce((acc, val) => `${acc} ${val.type.name}`, ''),
+        sprite: data.sprites.front_default
+      }
 
-      return this.formatInfo(info)
+      return info
     } catch (err) {
       debug(err)
-      throw new Error('Sorry, I\'ve never heard of that Pokémon!')
-    }
-  }
-
-  async sprite (pokemon) {
-    try {
-      const response = await axios.get(this.pokedexBaseUri + 'pokemon/' + querystring.escape(pokemon.trim().toLowerCase()))
-      let data = response.data
-      return data.sprites.front_default
-    }
-    catch (err) {
-      debug(err)
-      throw new Error('Sorry, I\'ve never heard of that Pokémon!')
+      throw new Error("Sorry, I've never heard of that Pokémon!")
     }
   }
 }
