@@ -57,7 +57,7 @@ client
 client.registry
   .registerGroups([
     ['pokedex', 'Pokédex'],
-    ['totodile', 'Totodile'],
+    ['pictures', 'Pictures'],
     ['misc', 'Miscellaneous']
   ])
   .registerDefaults()

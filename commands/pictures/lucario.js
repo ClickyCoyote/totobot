@@ -1,4 +1,4 @@
-const debug = require('debug')('bot:totodile')
+const debug = require('debug')('bot:lucario')
 const Discord = require('discord.js')
 const path = require('path')
 const fs = require('fs')
@@ -7,24 +7,22 @@ const commando = require('discord.js-commando')
 const oneLine = require('common-tags').oneLine
 
 module.exports = class Totodile extends commando.Command {
-
-  constructor (client) {
+  constructor(client) {
     super(client, {
-      name: 'totodile',
-      aliases: ['toto'],
-      group: 'totodile',
-      memberName: 'totodile',
-      description: 'Show me a Totodile',
+      name: 'lucario',
+      aliases: ['luc', '448'],
+      group: 'pictures',
+      memberName: 'lucario',
+      description: 'Show me a Lucario',
       details: oneLine`
       `,
-      examples: ['totodile']
+      examples: ['lucario']
     })
 
-    this.IMAGE_DIR = path.join(__dirname, 'images')
+    this.IMAGE_DIR = path.join(__dirname, 'lucario')
   }
 
-  async run (msg, args) {
-
+  async run(msg, args) {
     try {
       const files = await this.getImages()
       const file = this.getRandom(files)
@@ -40,7 +38,7 @@ module.exports = class Totodile extends commando.Command {
    *
    * @returns {Promise<array>}
    */
-  async getImages ()  {
+  async getImages() {
     return new Promise((resolve, reject) => {
       fs.readdir(this.IMAGE_DIR, (err, files) => {
         if (err) {
@@ -51,7 +49,7 @@ module.exports = class Totodile extends commando.Command {
     })
   }
 
-  getRandom (files) {
+  getRandom(files) {
     return files[Math.floor(Math.random() * files.length)]
   }
 }
