@@ -24,7 +24,7 @@ client
     }
 
     ;['broken', 'not working'].forEach(word => {
-      if (msg.content.includes(word))
+      if (msg.content.toLowerCase().includes(word))
         msg.channel.send('Have you tried turning it off and back on again?')
     })
   })
