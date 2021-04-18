@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+  totobot:
+    container_name: totobot
+    build: ./
+    restart: unless-stopped
+    environment:
+      - BOT_TOKEN=
+      - DEBUG=bot* COMMAND_CHAR=.
+      - COMMAND_CHAR=.

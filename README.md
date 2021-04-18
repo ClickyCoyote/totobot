@@ -7,9 +7,11 @@
 ## Credential Management
 Store your bot token in the `BOT_TOKEN` environment variable
 
-## Other Settings
+## Environment Variables
 ```
+BOT_TOKEN=
 COMMAND_CHAR=.
+DEBUG=bot* 
 ```
 
 ## How to invite your bot to your server
