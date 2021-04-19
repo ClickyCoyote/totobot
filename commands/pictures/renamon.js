@@ -1,4 +1,4 @@
-const debug = require('debug')('bot:totodile')
+const debug = require('debug')('bot:renamon')
 const Discord = require('discord.js')
 const path = require('path')
 const fs = require('fs')
@@ -6,20 +6,20 @@ const fs = require('fs')
 const commando = require('discord.js-commando')
 const oneLine = require('common-tags').oneLine
 
-module.exports = class Totodile extends commando.Command {
+module.exports = class Renamon extends commando.Command {
   constructor(client) {
     super(client, {
-      name: 'totodile',
-      aliases: ['toto', '158'],
+      name: 'renamon',
+      aliases: ['rena'],
       group: 'pictures',
-      memberName: 'totodile',
-      description: 'Show me a Totodile',
+      memberName: 'renamon',
+      description: 'Show me a Renamon',
       details: oneLine`
       `,
-      examples: ['totodile']
+      examples: ['renamon']
     })
 
-    this.IMAGE_DIR = path.join(__dirname, 'totodile')
+    this.IMAGE_DIR = path.join(__dirname, 'renamon')
   }
 
   async run(msg, args) {
