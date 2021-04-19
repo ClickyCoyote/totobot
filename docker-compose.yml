@@ -7,5 +7,5 @@ services:
     restart: unless-stopped
     environment:
       - BOT_TOKEN=
-      - DEBUG=bot* COMMAND_CHAR=.
+      - DEBUG=bot*
       - COMMAND_CHAR=.
