@@ -10,7 +10,7 @@ module.exports = class Renamon extends commando.Command {
   constructor(client) {
     super(client, {
       name: 'renamon',
-      aliases: ['rena'],
+      aliases: ['rena', 'furryqueen'],
       group: 'pictures',
       memberName: 'renamon',
       description: 'Show me a Renamon',
