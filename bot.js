@@ -23,11 +23,13 @@ client
       )
     }
 
-    ;['broken', 'not working'].forEach(word => {
-      if (msg.content.toLowerCase().includes(word))
-        msg.channel.send('Have you tried turning it off and on again?')
-    })
+  ;['broken', 'not working'].forEach(word => {
+    if (msg.content.toLowerCase().includes(word))
+      msg.channel.send('Have you tried turning it off and on again?')
   })
+  if (msg.content.toLowerCase().includes('table'))
+    msg.channel.send('TABLE')
+})
   // .on('messageDelete', (msg) => {
   //   db.addDeletedMessage(msg).then(() => {
   //     debug('Stored deleted message: %s @%s #%s %s', msg.guild.name, msg.member.displayName, msg.channel.name, msg.content)
