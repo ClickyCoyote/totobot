@@ -27,6 +27,12 @@ client
     if (msg.content.toLowerCase().includes(word))
       msg.channel.send('Have you tried turning it off and on again?')
   })
+  ;['furry','lucario','totodile','cute'].forEach(word => {
+    if (msg.content.toLowerCase().includes(word) && Math.random() < .2)
+      msg.channel.send('uwu')
+  })
+  if (msg.content.toLowerCase() === 'owo')
+    msg.channel.send('what\'s this?')
 })
   // .on('messageDelete', (msg) => {
   //   db.addDeletedMessage(msg).then(() => {
