@@ -32,7 +32,7 @@ module.exports = class Pokedex extends commando.Command {
 
   async run(msg, args) {
       const f = +(args.fahrenheit)
-      const c = Math.round((f - 32) / 1.8)
+      const c = ((f - 32) / 1.8).toFixed(1)
       return msg.channel.send(`${c}°C`)
   }
 }
